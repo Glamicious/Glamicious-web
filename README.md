@@ -11,8 +11,21 @@ pulsing badge, staggered entrances, email capture with success state, and an
 in-page English ↔ မြန်မာ toggle). To deploy it as the homepage before launch,
 set the environment variable `COMING_SOON=true` at build time — `/` and `/my`
 are then rewritten to the coming-soon page. Remove the variable and redeploy
-to launch the full site. The email form is front-end only; wire its submit
-handler to your mailing-list provider before going live.
+to launch the full site.
+
+### Waitlist emails
+
+Set `NEXT_PUBLIC_WAITLIST_ENDPOINT` to any endpoint that accepts a JSON POST
+(`{ email, locale, source }`) — e.g. a Formspree form URL — and the Notify-me
+form submits sign-ups there, showing an error state if the request fails.
+Without the variable the form only shows the success message and stores
+nothing.
+
+### Analytics
+
+Vercel Web Analytics is included via `@vercel/analytics` (enable Analytics on
+the Vercel project). Page views work on the free plan; the form also sends
+`notify_me_click` and `waitlist_signup` custom events, which display on Pro.
 
 ## Locales
 
