@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { track } from "@vercel/analytics";
 import Doll from "./Doll";
 
 type CsLocale = "en" | "my";
@@ -18,6 +19,7 @@ const STRINGS = {
     noSpam: "One email when we launch. No spam.",
     success: "You're on the list — we'll email you at launch. ✦",
     invalidEmail: "Please enter a valid email address.",
+    submitFailed: "Something went wrong — please try again.",
     card: {
       title: "Classic lash extension",
       status: "Booked",
@@ -64,6 +66,7 @@ const STRINGS = {
     noSpam: "ဖွင့်လှစ်သည့်အခါ အီးမေးလ်တစ်စောင်သာ ပို့ပါမည်။",
     success: "စာရင်းသွင်းပြီးပါပြီ — ဖွင့်လှစ်သည့်အခါ အကြောင်းကြားပါမည်။ ✦",
     invalidEmail: "အီးမေးလ်လိပ်စာ မှန်ကန်စွာ ထည့်ပါ။",
+    submitFailed: "တစ်ခုခု မှားယွင်းသွားပါသည် — ထပ်စမ်းကြည့်ပါ။",
     card: {
       title: "Classic မျက်တောင်ဆက်ခြင်း",
       status: "ဘိုကင်ပြီး",
@@ -128,7 +131,8 @@ export default function ComingSoon() {
   const [locale, setLocale] = useState<CsLocale>("en");
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<"invalid" | "failed" | null>(null);
   const t = STRINGS[locale];
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -158,14 +162,33 @@ export default function ComingSoon() {
     };
   }, []);
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError(true);
+    if (submitting) return;
+    const value = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setError("invalid");
       return;
     }
-    setError(false);
-    setSubmitted(true);
+    setError(null);
+    track("notify_me_click", { locale });
+
+    const endpoint = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT || "/api/waitlist";
+    setSubmitting(true);
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ email: value, locale, source: "coming-soon" }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      track("waitlist_signup", { locale });
+      setSubmitted(true);
+    } catch {
+      setError("failed");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -232,18 +255,25 @@ export default function ComingSoon() {
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
-                        setError(false);
+                        setError(null);
                       }}
                       placeholder={t.emailPlaceholder}
                       aria-label={t.earlyAccess}
-                      aria-invalid={error}
+                      aria-invalid={error === "invalid"}
+                      disabled={submitting}
                     />
-                    <button type="submit">{t.notify}</button>
+                    <button type="submit" disabled={submitting}>
+                      {submitting ? "…" : t.notify}
+                    </button>
                   </form>
                 )}
                 {!submitted && (
                   <p className={`cs-form-note${error ? " is-error" : ""}`}>
-                    {error ? t.invalidEmail : t.noSpam}
+                    {error === "invalid"
+                      ? t.invalidEmail
+                      : error === "failed"
+                        ? t.submitFailed
+                        : t.noSpam}
                   </p>
                 )}
               </div>

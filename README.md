@@ -11,8 +11,32 @@ pulsing badge, staggered entrances, email capture with success state, and an
 in-page English ↔ မြန်မာ toggle). To deploy it as the homepage before launch,
 set the environment variable `COMING_SOON=true` at build time — `/` and `/my`
 are then rewritten to the coming-soon page. Remove the variable and redeploy
-to launch the full site. The email form is front-end only; wire its submit
-handler to your mailing-list provider before going live.
+to launch the full site.
+
+### Waitlist emails (Upstash Redis)
+
+The Notify-me form POSTs to `/api/waitlist`, which stores each sign-up in an
+Upstash Redis hash (deduplicated by lowercased email, with locale, source and
+timestamp). Setup:
+
+1. Add the free Upstash Redis integration from the Vercel Marketplace (or
+   create a database at upstash.com) — it sets `UPSTASH_REDIS_REST_URL` and
+   `UPSTASH_REDIS_REST_TOKEN` on the project.
+2. Add `WAITLIST_EXPORT_KEY` (any long random string) as an environment
+   variable.
+3. Download the list any time at
+   `https://<your-domain>/api/waitlist/export?key=<WAITLIST_EXPORT_KEY>` —
+   a CSV with email, locale, source and signed_up_at columns.
+
+Until Redis is configured the API accepts sign-ups without storing them, so
+previews keep working. Setting `NEXT_PUBLIC_WAITLIST_ENDPOINT` overrides the
+form's target (e.g. to a Formspree URL) instead of the built-in API.
+
+### Analytics
+
+Vercel Web Analytics is included via `@vercel/analytics` (enable Analytics on
+the Vercel project). Page views work on the free plan; the form also sends
+`notify_me_click` and `waitlist_signup` custom events, which display on Pro.
 
 ## Locales
 
