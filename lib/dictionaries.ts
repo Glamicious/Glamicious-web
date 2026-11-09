@@ -229,7 +229,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "Manage every specialist’s calendar in one place",
         "Join campaigns like Black Friday to reach more guests",
       ],
-      cta: "Become a partner",
+      cta: "Join as a partner",
       panelTitle: "Today at Lilac Lash Studio",
       slots: [
         { time: "10:00", desc: "Classic lash", artist: "Nok", status: "Booked", variant: "booked" },
@@ -397,7 +397,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "ဝန်ထမ်းအားလုံး၏ အချိန်ဇယားကို တစ်နေရာတည်းတွင် စီမံပါ",
         "Black Friday ကဲ့သို့ ကမ်ပိန်းများတွင် ပါဝင်ပြီး ဖောက်သည် ပိုမိုရယူပါ",
       ],
-      cta: "မိတ်ဖက် ဖြစ်လာရန်",
+      cta: "မိတ်ဖက်အဖြစ် ပါဝင်ရန်",
       panelTitle: "ယနေ့ Lilac Lash Studio တွင်",
       slots: [
         {
