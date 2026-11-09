@@ -2,45 +2,45 @@ import Image from "next/image";
 import Doll from "./Doll";
 import { CalendarIcon, SearchIcon } from "./icons";
 import heroPhoto from "@/public/images/salon-hero.jpg";
+import type { Dictionary } from "@/lib/dictionaries";
 
-const POPULAR = ["Lash extensions", "Gel nails", "Hair colour", "Thai massage"];
-
-export default function Hero() {
+export default function Hero({ t }: { t: Dictionary["hero"] }) {
   return (
     <section className="hero">
       <div className="container hero__inner">
         <div className="hero__copy">
-          <p className="hero__eyebrow">SALONS · SPAS · LASH &amp; NAIL STUDIOS</p>
+          <p className="hero__eyebrow">{t.eyebrow}</p>
           <h1 className="hero__title">
-            Book your <span className="brand-script">glow-up</span> in a few taps.
+            {t.titlePre}
+            <span className={`hero__title-accent${t.accentScript ? " brand-script" : ""}`}>
+              {t.titleAccent}
+            </span>
+            {t.titlePost}
           </h1>
-          <p className="hero__sub">
-            Find top-rated beauty pros near you, see real-time availability and book instantly — no
-            calls, no waiting.
-          </p>
+          <p className="hero__sub">{t.sub}</p>
 
           <form role="search" className="search">
             <label className="search__field">
-              <span className="search__label">Treatment</span>
-              <input type="text" placeholder="Lashes, nails, facial…" />
+              <span className="search__label">{t.search.treatmentLabel}</span>
+              <input type="text" placeholder={t.search.treatmentPlaceholder} />
             </label>
             <label className="search__field">
-              <span className="search__label">Where</span>
-              <input type="text" placeholder="Near me" />
+              <span className="search__label">{t.search.whereLabel}</span>
+              <input type="text" placeholder={t.search.wherePlaceholder} />
             </label>
             <label className="search__field">
-              <span className="search__label">When</span>
-              <input type="text" placeholder="Any day" />
+              <span className="search__label">{t.search.whenLabel}</span>
+              <input type="text" placeholder={t.search.whenPlaceholder} />
             </label>
-            <button type="submit" className="search__submit" aria-label="Search">
+            <button type="submit" className="search__submit" aria-label={t.search.submit}>
               <SearchIcon />
-              <span className="search__submit-text">Search</span>
+              <span className="search__submit-text">{t.search.submit}</span>
             </button>
           </form>
 
           <div className="hero__popular">
-            <span className="hero__popular-label">Popular:</span>
-            {POPULAR.map((p) => (
+            <span className="hero__popular-label">{t.popularLabel}</span>
+            {t.popular.map((p) => (
               <a key={p} href="#" className="chip">
                 {p}
               </a>
@@ -51,7 +51,7 @@ export default function Hero() {
         <div className="hero__visual">
           <Image
             src={heroPhoto}
-            alt="Bright salon with styling chairs and lit mirrors"
+            alt={t.photoAlt}
             className="hero__photo"
             priority
             sizes="(min-width: 1024px) 560px, 100vw"
@@ -61,8 +61,8 @@ export default function Hero() {
               <CalendarIcon />
             </span>
             <span>
-              <span className="hero__card-title">Lilac Lash Studio · ★ 4.92</span>
-              <span className="hero__card-sub">Next free slot today, 14:30</span>
+              <span className="hero__card-title">{t.cardTitle}</span>
+              <span className="hero__card-sub">{t.cardSub}</span>
             </span>
           </div>
           <span className="hero__doll">

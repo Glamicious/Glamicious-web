@@ -1,7 +1,18 @@
 # Glamicious — Website
 
 Responsive Next.js implementation of the Glamicious beauty & wellness booking
-landing page, built from the "Lilac · Website home" design board.
+landing page, built from the "Lilac · Website home" and "မြန်မာ · Website home"
+design boards.
+
+## Locales
+
+- `/` — English
+- `/my` — Burmese (မြန်မာ), with its own typography (Noto Sans Myanmar,
+  taller line-heights, weight 700 headings) and Myanmar numerals, per the
+  design board. The pill button in the header switches locale.
+
+All copy lives in `lib/dictionaries.ts`; both routes render the same
+`components/HomePage.tsx` with their dictionary.
 
 ## Tech
 
@@ -41,9 +52,13 @@ npm start
 ```
 app/
   layout.tsx      — root layout, metadata, global styles
-  page.tsx        — home page composition
+  page.tsx        — English home page (/)
+  my/page.tsx     — Burmese home page (/my)
   globals.css     — fonts, design tokens, all component styles
+lib/
+  dictionaries.ts — all strings for both locales
 components/
+  HomePage.tsx    — shared page shell, renders a locale's dictionary
   Header.tsx      — sticky header with mobile menu (client component)
   Hero.tsx        — hero with search form and floating card
   Treatments.tsx  — browse-by-treatment grid

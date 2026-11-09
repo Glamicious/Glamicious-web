@@ -2,29 +2,23 @@
 
 import { useState } from "react";
 import Doll from "./Doll";
+import type { Dictionary } from "@/lib/dictionaries";
 
-const NAV_LINKS = [
-  { href: "#treatments", label: "Treatments" },
-  { href: "#salons", label: "Salons" },
-  { href: "#deals", label: "Deals" },
-  { href: "#partners", label: "For salons" },
-];
-
-export default function Header() {
+export default function Header({ t, homeHref }: { t: Dictionary["header"]; homeHref: string }) {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="site-header">
       <div className="container site-header__bar">
-        <a href="#" className="site-header__logo" aria-label="Glamicious home">
+        <a href={homeHref} className="site-header__logo" aria-label="Glamicious">
           <span className="site-header__logo-mark">
             <Doll size={46} uid="header" />
           </span>
           <span className="site-header__logo-text">Glamicious</span>
         </a>
 
-        <nav aria-label="Main" className="site-header__nav">
-          {NAV_LINKS.map((l) => (
+        <nav aria-label={t.navAria} className="site-header__nav">
+          {t.nav.map((l) => (
             <a key={l.href} href={l.href}>
               {l.label}
             </a>
@@ -32,14 +26,19 @@ export default function Header() {
         </nav>
 
         <div className="site-header__actions site-header__desktop-only">
-          <a href="#" lang="my" className="lang-pill">
-            မြန်မာ
+          <a
+            href={t.lang.href}
+            lang={t.lang.hreflang}
+            hrefLang={t.lang.hreflang}
+            className={`lang-pill${t.lang.myFont ? " lang-pill--my" : ""}`}
+          >
+            {t.lang.label}
           </a>
           <a href="#" className="btn-ghost">
-            Log in
+            {t.login}
           </a>
           <a href="#app" className="btn-primary">
-            Get the app
+            {t.getApp}
           </a>
         </div>
 
@@ -48,7 +47,7 @@ export default function Header() {
           className="site-header__burger"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? t.menuClose : t.menuOpen}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? (
@@ -64,20 +63,25 @@ export default function Header() {
       </div>
 
       <div id="mobile-menu" className={`site-header__menu${open ? " is-open" : ""}`}>
-        {NAV_LINKS.map((l) => (
+        {t.nav.map((l) => (
           <a key={l.href} href={l.href} className="menu-link" onClick={() => setOpen(false)}>
             {l.label}
           </a>
         ))}
         <div className="site-header__menu-actions">
-          <a href="#" lang="my" className="lang-pill">
-            မြန်မာ
+          <a
+            href={t.lang.href}
+            lang={t.lang.hreflang}
+            hrefLang={t.lang.hreflang}
+            className={`lang-pill${t.lang.myFont ? " lang-pill--my" : ""}`}
+          >
+            {t.lang.label}
           </a>
           <a href="#" className="btn-ghost">
-            Log in
+            {t.login}
           </a>
           <a href="#app" className="btn-primary" onClick={() => setOpen(false)}>
-            Get the app
+            {t.getApp}
           </a>
         </div>
       </div>

@@ -34,11 +34,11 @@
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Noto Sans Myanmar — for the Burmese language switch */
+/* Noto Sans Myanmar — variable weight, used across the Burmese locale */
 @font-face {
   font-family: "Noto Sans Myanmar";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400 700;
   font-stretch: 100%;
   font-display: swap;
   src: url("/fonts/noto-sans-myanmar-myanmar.woff2") format("woff2");
@@ -48,7 +48,18 @@
 @font-face {
   font-family: "Noto Sans Myanmar";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/fonts/noto-sans-myanmar-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Noto Sans Myanmar";
+  font-style: normal;
+  font-weight: 400 700;
   font-stretch: 100%;
   font-display: swap;
   src: url("/fonts/noto-sans-myanmar-latin.woff2") format("woff2");
@@ -213,10 +224,12 @@ img {
   border: 1px solid var(--lilac-200);
   text-decoration: none;
   color: var(--ink);
-  font-family: var(--font-my);
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
+}
+.lang-pill--my {
+  font-family: var(--font-my);
 }
 .lang-pill:hover {
   color: var(--violet);
@@ -362,7 +375,7 @@ img {
   letter-spacing: -0.03em;
 }
 
-.hero__title .brand-script {
+.hero__title-accent {
   color: var(--violet);
   letter-spacing: 0;
 }
@@ -1429,4 +1442,95 @@ img {
 }
 .site-footer__legal a:hover {
   color: var(--violet);
+}
+
+/* ───────────────────────── Burmese locale typography ─────────────────────────
+   Myanmar script needs taller line-heights, weight 700 (not 800) and slightly
+   smaller display sizes — values from the မြန်မာ · Website home design board. */
+
+[data-locale="my"] {
+  font-family: "Plus Jakarta Sans", "Noto Sans Myanmar", -apple-system,
+    "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+[data-locale="my"] .hero__eyebrow,
+[data-locale="my"] .partners__eyebrow {
+  letter-spacing: 0;
+}
+
+[data-locale="my"] .hero__title {
+  font-size: clamp(30px, 2.5vw + 18px, 46px);
+  line-height: 1.45;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[data-locale="my"] .hero__sub {
+  font-size: clamp(15px, 0.4vw + 13px, 17px);
+  line-height: 1.8;
+}
+
+[data-locale="my"] .section__title,
+[data-locale="my"] .how__title {
+  font-size: clamp(24px, 1.2vw + 18px, 30px);
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[data-locale="my"] .deals__badge {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[data-locale="my"] .deals__badge-en {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+[data-locale="my"] .deals__title {
+  font-size: clamp(28px, 2vw + 16px, 40px);
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[data-locale="my"] .deals__text {
+  line-height: 1.8;
+}
+
+[data-locale="my"] .how-card__title {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+[data-locale="my"] .how-card__text,
+[data-locale="my"] .partners__list,
+[data-locale="my"] .app-banner__sub {
+  line-height: 1.8;
+}
+
+[data-locale="my"] .partners__title {
+  font-size: clamp(26px, 1.8vw + 16px, 36px);
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[data-locale="my"] .app-banner__title {
+  font-size: clamp(22px, 1.2vw + 16px, 28px);
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[data-locale="my"] .app-banner__stores {
+  font-family: var(--font-sans);
+}
+
+[data-locale="my"] .site-footer__tagline {
+  line-height: 1.8;
+  max-width: 300px;
 }

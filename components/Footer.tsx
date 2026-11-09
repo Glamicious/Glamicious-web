@@ -1,28 +1,15 @@
-const COLUMNS = [
-  {
-    title: "Explore",
-    links: ["Lashes", "Nails", "Hair", "Spa & massage"],
-  },
-  {
-    title: "Company",
-    links: ["About us", "For salons", "Careers"],
-  },
-  {
-    title: "Support",
-    links: ["Help centre", "Cancellation policy", "Contact"],
-  },
-];
+import type { Dictionary } from "@/lib/dictionaries";
 
-export default function Footer() {
+export default function Footer({ t }: { t: Dictionary["footer"] }) {
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
         <div className="site-footer__cols">
           <div className="site-footer__brand">
             <span className="site-footer__brand-name">Glamicious</span>
-            <p className="site-footer__tagline">Beauty and wellness bookings, made glam.</p>
+            <p className="site-footer__tagline">{t.tagline}</p>
           </div>
-          {COLUMNS.map((col) => (
+          {t.cols.map((col) => (
             <nav key={col.title} aria-label={col.title} className="site-footer__col">
               <span className="site-footer__col-title">{col.title}</span>
               {col.links.map((l) => (
@@ -34,10 +21,10 @@ export default function Footer() {
           ))}
         </div>
         <div className="site-footer__legal">
-          <span>© 2026 Glamicious</span>
+          <span>{t.copyright}</span>
           <span className="site-footer__legal-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+            <a href="#">{t.privacy}</a>
+            <a href="#">{t.terms}</a>
           </span>
         </div>
       </div>
