@@ -275,7 +275,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       menuClose: "မီနူး ပိတ်ရန်",
     },
     hero: {
-      eyebrow: "အလှပြင်ဆိုင် · စပါ · မျက်တောင်နှင့် လက်သည်း စတူဒီယို",
+      eyebrow: "အလှပြင်ဆိုင် · Spa · မျက်တောင်နှင့် လက်သည်း စတူဒီယို",
       titlePre: "သင့်",
       titleAccent: "အလှ",
       titlePost: "အတွက် အချိန်ကို လွယ်ကူစွာ ဘိုကင်လုပ်ပါ",
@@ -309,7 +309,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "လက်သည်း",
         "ဆံပင်",
         "မျက်နှာအလှ",
-        "စပါနှင့် နှိပ်နယ်ခြင်း",
+        "Spa နှင့် နှိပ်နယ်ခြင်း",
         "မျက်ခုံး",
       ],
     },
@@ -327,7 +327,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaSecondary: "သတိပေးချက် ထားရန်",
     },
     salons: {
-      title: "လူကြိုက်များသော ဆိုင်များနှင့် စပါများ",
+      title: "လူကြိုက်များသော ဆိုင်များနှင့် Spa များ",
       sub: "ဒီလ Glamicious အသုံးပြုသူများ နှစ်သက်ကြသည်",
       link: "ဆိုင်အားလုံး ကြည့်ရန်",
       cards: [
@@ -361,7 +361,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
         },
         {
           name: "St. Gregory Spa",
-          pill: "ဟိုတယ်စပါ",
+          pill: "ဟိုတယ် Spa",
           meta: "Pan Pacific Yangon · ပန်းဘဲတန်း၊ ရန်ကုန်",
           priceStrong: "နေ့စဉ်ဖွင့်",
           priceMuted: "· ၉:၀၀–၂၂:၀၀",
@@ -437,7 +437,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       cols: [
         {
           title: "ရှာဖွေရန်",
-          links: ["မျက်တောင်", "လက်သည်း", "ဆံပင်", "စပါနှင့် နှိပ်နယ်ခြင်း"],
+          links: ["မျက်တောင်", "လက်သည်း", "ဆံပင်", "Spa နှင့် နှိပ်နယ်ခြင်း"],
         },
         {
           title: "ကုမ္ပဏီ",
