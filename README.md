@@ -13,13 +13,24 @@ set the environment variable `COMING_SOON=true` at build time — `/` and `/my`
 are then rewritten to the coming-soon page. Remove the variable and redeploy
 to launch the full site.
 
-### Waitlist emails
+### Waitlist emails (Upstash Redis)
 
-Set `NEXT_PUBLIC_WAITLIST_ENDPOINT` to any endpoint that accepts a JSON POST
-(`{ email, locale, source }`) — e.g. a Formspree form URL — and the Notify-me
-form submits sign-ups there, showing an error state if the request fails.
-Without the variable the form only shows the success message and stores
-nothing.
+The Notify-me form POSTs to `/api/waitlist`, which stores each sign-up in an
+Upstash Redis hash (deduplicated by lowercased email, with locale, source and
+timestamp). Setup:
+
+1. Add the free Upstash Redis integration from the Vercel Marketplace (or
+   create a database at upstash.com) — it sets `UPSTASH_REDIS_REST_URL` and
+   `UPSTASH_REDIS_REST_TOKEN` on the project.
+2. Add `WAITLIST_EXPORT_KEY` (any long random string) as an environment
+   variable.
+3. Download the list any time at
+   `https://<your-domain>/api/waitlist/export?key=<WAITLIST_EXPORT_KEY>` —
+   a CSV with email, locale, source and signed_up_at columns.
+
+Until Redis is configured the API accepts sign-ups without storing them, so
+previews keep working. Setting `NEXT_PUBLIC_WAITLIST_ENDPOINT` overrides the
+form's target (e.g. to a Formspree URL) instead of the built-in API.
 
 ### Analytics
 

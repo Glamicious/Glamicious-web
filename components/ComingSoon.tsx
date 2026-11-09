@@ -173,11 +173,7 @@ export default function ComingSoon() {
     setError(null);
     track("notify_me_click", { locale });
 
-    const endpoint = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT;
-    if (!endpoint) {
-      setSubmitted(true);
-      return;
-    }
+    const endpoint = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT || "/api/waitlist";
     setSubmitting(true);
     try {
       const res = await fetch(endpoint, {
