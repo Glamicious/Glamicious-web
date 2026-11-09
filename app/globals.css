@@ -1534,3 +1534,685 @@ img {
   line-height: 1.8;
   max-width: 300px;
 }
+
+/* ───────────────────────── Coming soon page ───────────────────────── */
+
+.cs {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* entrance + ambient animations */
+@keyframes cs-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cs-pop {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cs-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-13px);
+  }
+}
+@keyframes cs-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+@keyframes cs-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(109, 40, 217, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(109, 40, 217, 0);
+  }
+}
+@keyframes cs-twinkle {
+  0%,
+  100% {
+    transform: scale(0.65) rotate(0deg);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.05) rotate(18deg);
+    opacity: 1;
+  }
+}
+
+.cs-reveal {
+  animation: cs-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.cs-d1 {
+  animation-delay: 0.12s;
+}
+.cs-d2 {
+  animation-delay: 0.24s;
+}
+.cs-d3 {
+  animation-delay: 0.38s;
+}
+
+/* header */
+.cs-top {
+  background: var(--surface-lilac);
+}
+
+.cs-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.cs-hero .container,
+.cs-header.container {
+  width: 100%;
+}
+
+.cs-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.cs-logo-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--violet);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cs-logo-text {
+  font-family: var(--font-script);
+  font-size: 26px;
+  color: var(--violet);
+  white-space: nowrap;
+}
+
+.cs-lang {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 14px rgba(30, 20, 51, 0.07);
+}
+
+.cs-lang__btn {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.cs-lang__btn--my {
+  font-family: var(--font-my);
+  font-size: 13px;
+}
+.cs-lang__btn:hover {
+  color: var(--violet);
+}
+.cs-lang__btn.is-active {
+  background: var(--violet);
+  color: #ffffff;
+}
+
+/* hero */
+.cs-hero {
+  overflow: hidden;
+}
+
+.cs-hero__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  padding-top: 36px;
+  padding-bottom: 72px;
+}
+
+.cs-hero__copy {
+  flex: 1 1 440px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cs-badge {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--violet-deep);
+}
+
+.cs-badge__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--violet);
+  animation: cs-pulse 2s ease-out infinite;
+}
+
+.cs-title {
+  margin: 0;
+  font-size: clamp(38px, 3.6vw + 20px, 62px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.cs-title__accent {
+  color: var(--violet);
+  letter-spacing: 0;
+}
+
+.cs-sub {
+  margin: 0;
+  font-size: clamp(16px, 0.4vw + 14px, 18px);
+  line-height: 1.65;
+  color: var(--body-text);
+  max-width: 560px;
+}
+
+.cs-form-label {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.cs-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-pop);
+  max-width: 560px;
+}
+
+.cs-form input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--ink);
+}
+.cs-form input::placeholder {
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.cs-form button {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--violet);
+  color: #ffffff;
+  padding: 14px 26px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cs-form button:hover {
+  background: var(--violet-dark);
+  transform: translateY(-1px);
+}
+
+.cs-form-note {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+.cs-form-note.is-error {
+  color: #b4232c;
+  font-weight: 600;
+}
+
+.cs-success {
+  margin: 0;
+  max-width: 560px;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #bbe7c9;
+  color: #15803d;
+  font-size: 15px;
+  font-weight: 700;
+  animation: cs-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* hero visual */
+.cs-hero__visual {
+  flex: 1 1 380px;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px 56px;
+}
+
+.cs-orb {
+  position: relative;
+  width: clamp(240px, 26vw + 140px, 440px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--violet);
+  box-shadow: 0 0 0 26px rgba(167, 139, 250, 0.14), 0 30px 60px rgba(109, 40, 217, 0.25);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  animation: cs-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both,
+    cs-breathe 7s ease-in-out 1s infinite;
+}
+
+.cs-orb__doll {
+  width: 82%;
+  margin-bottom: -4%;
+}
+.cs-orb__doll svg {
+  width: 100%;
+  height: auto;
+}
+
+.cs-sparkle {
+  position: absolute;
+  left: 9%;
+  bottom: 16%;
+  animation: cs-twinkle 2.6s ease-in-out infinite;
+}
+
+.cs-bubble {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 0 6px #ffffff, 0 14px 30px rgba(30, 20, 51, 0.16);
+}
+.cs-bubble svg {
+  width: 100%;
+  height: auto;
+}
+
+.cs-bubble--1 {
+  width: clamp(72px, 7vw + 44px, 104px);
+  height: clamp(72px, 7vw + 44px, 104px);
+  top: 2%;
+  left: 2%;
+  background: #fce7f3;
+  animation: cs-pop 0.8s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both,
+    cs-float 5.6s ease-in-out 1.3s infinite;
+}
+
+.cs-bubble--2 {
+  width: clamp(66px, 6vw + 42px, 96px);
+  height: clamp(66px, 6vw + 42px, 96px);
+  top: -2%;
+  right: 4%;
+  background: #ffffff;
+  animation: cs-pop 0.8s 0.65s cubic-bezier(0.22, 1, 0.36, 1) both,
+    cs-float 6.4s ease-in-out 1.45s infinite;
+}
+
+.cs-bubble--3 {
+  width: clamp(60px, 5vw + 40px, 88px);
+  height: clamp(60px, 5vw + 40px, 88px);
+  right: 0;
+  bottom: 24%;
+  background: #fff4d6;
+  animation: cs-pop 0.8s 0.8s cubic-bezier(0.22, 1, 0.36, 1) both,
+    cs-float 7.2s ease-in-out 1.6s infinite;
+}
+
+.cs-booking {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(360px, 94%);
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow-float);
+  animation: cs-pop 0.8s 0.55s cubic-bezier(0.22, 1, 0.36, 1) both,
+    cs-float 7s ease-in-out 1.6s infinite;
+}
+
+.cs-booking__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cs-booking__title {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.cs-booking__status {
+  font-size: 12px;
+  font-weight: 700;
+  color: #15803d;
+  background: #dcfce7;
+  border: 1px solid #bbe7c9;
+  border-radius: 999px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.cs-booking__when {
+  margin: 6px 0 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cs-booking__pay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--body-text);
+}
+
+.cs-booking__pay strong {
+  font-size: 17px;
+  color: var(--ink);
+}
+
+/* features */
+.cs-features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding-top: 56px;
+  padding-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .cs-features {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-top: 80px;
+    padding-bottom: 48px;
+  }
+}
+
+.cs-feature {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cs-feature:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-pop);
+}
+
+.cs-feature__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--surface-lilac);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-feature h2 {
+  margin: 4px 0 0;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.cs-feature p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--body-text);
+}
+
+/* salons banner */
+.cs-salons-wrap {
+  padding-top: 24px;
+  padding-bottom: 56px;
+}
+
+.cs-salons {
+  border-radius: 32px;
+  background: #221839;
+  color: #ffffff;
+  padding: 32px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .cs-salons {
+    padding: 44px 48px;
+  }
+}
+
+.cs-salons__copy {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-salons__eyebrow {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--lilac-300);
+}
+
+.cs-salons h2 {
+  margin: 0;
+  font-size: clamp(24px, 1.6vw + 18px, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cs-salons__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--lilac-on-dark);
+  max-width: 560px;
+}
+
+.cs-salons__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .cs-salons__cta {
+    align-items: center;
+  }
+}
+
+.cs-salons__btn {
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.cs-salons__btn:hover {
+  background: var(--lilac-100);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.cs-salons__mail {
+  color: var(--lilac-300);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+.cs-salons__mail:hover {
+  color: #ffffff;
+}
+
+/* footer */
+.cs-footer {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 20px;
+  padding-bottom: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--muted);
+  width: 100%;
+}
+.cs-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.cs-footer a:hover {
+  color: var(--violet);
+}
+
+/* coming soon — Burmese typography */
+[data-locale="my"] .cs-badge {
+  letter-spacing: 0;
+}
+[data-locale="my"] .cs-title {
+  font-size: clamp(27px, 2.4vw + 15px, 44px);
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+[data-locale="my"] .cs-sub,
+[data-locale="my"] .cs-feature p,
+[data-locale="my"] .cs-salons__text {
+  line-height: 1.8;
+}
+[data-locale="my"] .cs-feature h2 {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+[data-locale="my"] .cs-salons h2 {
+  font-size: clamp(21px, 1.3vw + 15px, 28px);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+[data-locale="my"] .cs-salons__eyebrow {
+  letter-spacing: 0;
+}
+
+/* small screens: booking card flows under the orb */
+@media (max-width: 639px) {
+  .cs-hero__inner {
+    gap: 24px;
+    padding-bottom: 48px;
+  }
+  .cs-hero__visual {
+    padding: 28px 8px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .cs-booking {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin: -34px auto 0;
+  }
+  .cs-lang__btn {
+    padding: 8px 13px;
+  }
+  .cs-logo-text {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs *,
+  .cs {
+    animation: none !important;
+    transition: none !important;
+  }
+}

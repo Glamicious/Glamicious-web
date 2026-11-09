@@ -4,6 +4,16 @@ Responsive Next.js implementation of the Glamicious beauty & wellness booking
 landing page, built from the "Lilac · Website home" and "မြန်မာ · Website home"
 design boards.
 
+## Coming-soon page
+
+An animated pre-launch page lives at `/coming-soon` (floating avatar bubbles,
+pulsing badge, staggered entrances, email capture with success state, and an
+in-page English ↔ မြန်မာ toggle). To deploy it as the homepage before launch,
+set the environment variable `COMING_SOON=true` at build time — `/` and `/my`
+are then rewritten to the coming-soon page. Remove the variable and redeploy
+to launch the full site. The email form is front-end only; wire its submit
+handler to your mailing-list provider before going live.
+
 ## Locales
 
 - `/` — English
