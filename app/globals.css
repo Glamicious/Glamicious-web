@@ -1862,8 +1862,8 @@ img {
 }
 
 .cs-orb__doll {
-  width: 82%;
-  margin-bottom: -4%;
+  width: 78%;
+  margin-bottom: 14%;
 }
 .cs-orb__doll svg {
   width: 100%;
@@ -2215,4 +2215,14 @@ img {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* eye tracking: pupils follow the cursor via --eye-x/--eye-y set on .cs.
+   The right eye group is mirrored with scale(-1,1), so its x is inverted. */
+.cs .doll-pupil {
+  transform: translate(var(--eye-x, 0px), var(--eye-y, 0px));
+  transition: transform 0.12s ease-out;
+}
+.cs .doll-pupil--m {
+  transform: translate(calc(var(--eye-x, 0px) * -1), var(--eye-y, 0px));
 }

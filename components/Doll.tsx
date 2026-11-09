@@ -295,18 +295,22 @@ export default function Doll({
       <g>
         <path d="M178 232 Q140 216 98 230 Q138 258 178 232 Z" fill="#FFFFFF" />
         <g clipPath={url("eye")}>
-          <circle cx="136" cy="240" r="18" fill={c.iris} />
-          <circle cx="136" cy="240" r="10" fill="#1E1420" />
-          <circle cx="142" cy="234" r="4.5" fill="#FFFFFF" />
+          <g className="doll-pupil">
+            <circle cx="136" cy="240" r="18" fill={c.iris} />
+            <circle cx="136" cy="240" r="10" fill="#1E1420" />
+            <circle cx="142" cy="234" r="4.5" fill="#FFFFFF" />
+          </g>
         </g>
         {male ? maleEyeLine : femEye}
       </g>
       <g transform="translate(400,0) scale(-1,1)">
         <path d="M178 232 Q140 216 98 230 Q138 258 178 232 Z" fill="#FFFFFF" />
         <g clipPath={url("eye")}>
-          <circle cx="136" cy="240" r="18" fill={c.iris} />
-          <circle cx="136" cy="240" r="10" fill="#1E1420" />
-          <circle cx="130" cy="234" r="4.5" fill="#FFFFFF" />
+          <g className="doll-pupil doll-pupil--m">
+            <circle cx="136" cy="240" r="18" fill={c.iris} />
+            <circle cx="136" cy="240" r="10" fill="#1E1420" />
+            <circle cx="130" cy="234" r="4.5" fill="#FFFFFF" />
+          </g>
         </g>
         {male ? maleEyeLine : femEye}
       </g>

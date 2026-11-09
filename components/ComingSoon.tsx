@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import Doll from "./Doll";
 
 type CsLocale = "en" | "my";
@@ -130,10 +130,33 @@ export default function ComingSoon() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const t = STRINGS[locale];
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const root = rootRef.current;
+    if (!root) return;
+    let raf = 0;
+    const onMove = (e: PointerEvent) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const nx = (e.clientX / window.innerWidth) * 2 - 1;
+        const ny = (e.clientY / window.innerHeight) * 2 - 1;
+        root.style.setProperty("--eye-x", `${(nx * 11).toFixed(1)}px`);
+        root.style.setProperty("--eye-y", `${(ny * 6).toFixed(1)}px`);
+      });
+    };
+    window.addEventListener("pointermove", onMove);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -146,7 +169,12 @@ export default function ComingSoon() {
   }
 
   return (
-    <div className={`cs${locale === "my" ? " locale-my" : ""}`} lang={locale} data-locale={locale}>
+    <div
+      ref={rootRef}
+      className={`cs${locale === "my" ? " locale-my" : ""}`}
+      lang={locale}
+      data-locale={locale}
+    >
       <div className="cs-top">
       <header className="cs-header container">
         <a href="/coming-soon" className="cs-logo cs-reveal">
