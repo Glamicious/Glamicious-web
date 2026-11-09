@@ -50,7 +50,7 @@ const STRINGS = {
       email: "partners@glamicious.com",
     },
     footerLeft: "© 2026 Glamicious · Yangon",
-    footerRight: "hello@glamicious.com",
+    footerRight: "support@glamicious.app",
   },
   my: {
     badge: "မကြာမီ ဖွင့်လှစ်မည် · ရန်ကုန်",
@@ -96,7 +96,7 @@ const STRINGS = {
       email: "partners@glamicious.com",
     },
     footerLeft: "© ၂၀၂၆ Glamicious · ရန်ကုန်",
-    footerRight: "hello@glamicious.com",
+    footerRight: "support@glamicious.app",
   },
 } as const;
 
@@ -321,7 +321,7 @@ export default function ComingSoon() {
 
       <footer className="container cs-footer">
         <span>{t.footerLeft}</span>
-        <a href="mailto:hello@glamicious.com" lang="en">
+        <a href="mailto:support@glamicious.app" lang="en">
           {t.footerRight}
         </a>
       </footer>
